@@ -1,7 +1,7 @@
 ---
 title: 使用Hexo+GitHub搭建静态博客
 tag:
-- hexo
+- Hexo
 - 静态博客
 categories:
 - 工具

@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 
+title: 茉莉蜜茶only
 subtitle: 
 description: 非洲茉莉 性喜温暖 好阳光 
 author: YANFANG・CHANG
@@ -72,6 +72,8 @@ theme: hexo-theme-next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:chang20159/chang20159.github.io.git
+  repo: 
+    github: git@github.com:chang20159/chang20159.github.io.git
+    coding: git@git.coding.net:chang20159/chang20159.git
   branch: master
 
