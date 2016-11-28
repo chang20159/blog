@@ -1,10 +1,10 @@
 ---
 title: Hexo博客迁移至GitCafe(Coding)的Pages服务
-tag:
-- 静态博客
+tag: 
 - Hexo
+- Coding
 categories:
-- 工具
+- 静态博客
 ---
 这个博客之前是挂在GitHub的Pages空间，这两天发现访问博客的速度好慢啊。啊不对，是一直都很慢，这两天是完全打不开了。。。找了找能优化访问速度的办法，最后决定在GitCafe上也部署一个。GitCafe是国内版的GitHub，有了它访问速度真的快好多。国内的支持部署静态博客的代码托管仓库还有Coding，不过打开[GitCafe官网](https://coding.net/gitcafe.html)发现，它已经被[Coding](https://coding.net/)收购了。。。    
 <img src="/images/ToGitCafe/QQ20161109-2@2x.png" class="full-image" />
