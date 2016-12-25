@@ -8,26 +8,26 @@ categories:
 ### 安装
 全局安装
 
-```
+```bash
 npm install gulp -g
 ```
 
 项目开发安装
 
-```
+```bash
 npm install gulp -dev --save
 ```
 
 插件安装
 
-```
+```bash
 npm install gulp-concat gulp-minify-html gulp-minify-css gulp-rename  -dev --save
 ```
 ### 配置文件
 
 在项目根目录下需要创建一个名为gulpfile.js的文件,例如
 
-```
+```javascript
 var gulp       = require('gulp');
 var minifyHTML = require('gulp-minify-html');
 var concat     = require('gulp-concat');
@@ -42,6 +42,7 @@ gulp.task('html',function(){
     gulp.src('./src/html/*.html')
         .pipe(minifyHTML())
         .pipe(gulp.dest('./'))
+        .pipe(connect.reload())
 });
 
 gulp.task('css',function(){
@@ -50,6 +51,7 @@ gulp.task('css',function(){
         .pipe((minifyCSS()))
         .pipe(rename({ suffix : '.min'}))
         .pipe(gulp.dest('./assets/'))
+        .pipe(connect.reload())
 });
 
 gulp.task('js',function(){
@@ -57,12 +59,14 @@ gulp.task('js',function(){
         .pipe(concat('main.js'))
         .pipe(rename({ suffix : '.min'}))
         .pipe(gulp.dest('./assets/'))
+        .pipe(connect.reload())
 });
 
 gulp.task('babel',function(){
     gulp.src('./src/exercise/**/*.js')
         .pipe(babel())
         .pipe(gulp.dest('./exercise/'))
+        .pipe(connect.reload())
 });
 
 gulp.task('watch',function(){
@@ -97,7 +101,7 @@ stream能被pipe进来写入一个文件，文件的上级路径在path下，pat
 #### gulp.task(name,function)
 定义一个任务，接收两个参数。第一个参数是任务的名字，第二个参数是要做的事情。如：
 
-```
+```javascript
 gulp.task('html',function(){
     gulp.src('./src/html/*.html')
         .pipe(minifyHTML())
@@ -107,7 +111,7 @@ gulp.task('html',function(){
 任务的名字叫html,要做的事情就是把./src/html/目录下已.html结尾的文件进行压缩后，放到./目录下。
 如果要执行多个任务，可以这样定义：
 
-```
+```javascript
 gulp.task('dev',['html','css','js','babel','watch']，function(){});
 ```
 任务dev就是执行任务html，css，js，babel，watch
