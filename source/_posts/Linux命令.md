@@ -27,6 +27,17 @@ categories:
 - rename
 - pwd
 - ls
+```shell
+ls -al --full-time  
+```
+BSD版本(MAC OSX)不支持--full-time选项，GNU版本的ls支持--full-time
+若想在MAC OSX查看文件最后修改时间，可用
+```shell
+ls -lT
+```
+
+
+
 - mv
 - cd
 - cp

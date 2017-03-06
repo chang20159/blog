@@ -103,3 +103,5 @@ hexo-theme-next这个主题功能蛮强大的，现在有三种页面模式，�
 - [手把手教从零开始在GitHub上使用Hexo搭建博客教程(一)-附GitHub注册及配置](https://segmentfault.com/a/1190000005590795)
 - [手把手教从零开始在GitHub上使用Hexo搭建博客教程(二)-Hexo参数设置](https://segmentfault.com/a/1190000005609509)
 - [Hexo博客主题推荐](https://www.aswifter.com/2016/01/18/hexo-themes/)
+- [leancloud官网](https://leancloud.cn/)
+- [多说官网](http://duoshuo.com/)

@@ -2,9 +2,8 @@
 title: jQuery在动态生成的节点上绑定事件无效
 tag:
 - jQuery
-- 事件委托
 categories:
-- jQuery
+- JQuery
 ---
 在有些情况下，需要在DOM节点存在之前就给这个节点绑定事件，在使用Jquery给尚不存在的dom节点绑定事件时发现并不起作用，事件并没有绑定在dom节点上，但也不报错。而使用原生的JavaScript绑定事件，如果绑定事件的DOM节点不存在，是会报错的。
 <!-- more -->
