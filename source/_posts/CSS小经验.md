@@ -5,7 +5,7 @@ tag:
 categories:
 - CSS
 ---
-1 隐藏滚动条
+### 隐藏滚动条
 见[::-webkit-scrollbar](https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar)
 ```css
 .visible-scrollbar, .invisible-scrollbar {
@@ -19,14 +19,8 @@ categories:
 ```
 
 
-2 线性渐变  
-见[linear-gradient](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Using_CSS_gradients)
-```css
-background: linear-gradient(to right,#ff6633,#ff8533);
-```
 
-
-3 display:inline-block 元素之间有空白间隙
+### display:inline-block 元素之间有空白间隙
 ```css
 ul{
     width:100%;
@@ -52,27 +46,28 @@ li{
 </ul>
 ```
 
-4 设置float属性导致子节点溢出
-这个需要清除浮动，清除浮动的方法有以下几个：
-- 在父元素中设置overflow:hidden
-- 加一个统计节点，设置节点的 clear: both;
-- 
-6 垂直居中
-- 定高  line-height与高度相同
 
-7 定宽不换行
+### 定宽不换行
 white-space: nowrap;
 
-8 溢出文本显示省略号效果
+### 单行文本溢出显示省略号
 有两个条件
 - 设置文本显示在一行  white-space:nowrap
 - 溢出时隐藏内容   overflow:hidden
 再设置：text-overflow:ellipsis       ellipsis翻译：（语法结构上的）省略
 
-9 z-index无效
+### 多行文本移除显示省略号
+```css
+// 仅适用于webkit内核浏览器
+p{
+  display: -webkit-box;   //设置display，将对象作为弹性伸缩盒子模型显示
+  -webkit-box-orient: vertical;  //规定框的子元素应该被水平或垂直排列
+  -webkit-line-clamp: 4;  //限制在一个块元素显示的文本的行数
+  overflow: hidden;
+}
+```
+
+### z-index无效
 需要设置position属性为非static值
 
-10 flex
-display: flex;
-flex-direction: column;
-align-items: center;
+
