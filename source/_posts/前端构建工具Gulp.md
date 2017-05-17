@@ -11,7 +11,7 @@ categories:
 ```bash
 npm install gulp -g
 ```
-
+<!-- more -->
 项目开发安装
 
 ```bash

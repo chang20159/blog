@@ -17,7 +17,7 @@ categories:
   display: none;
 }
 ```
-
+<!-- more -->
 
 
 ### display:inline-block 元素之间有空白间隙

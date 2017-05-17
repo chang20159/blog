@@ -20,11 +20,12 @@ categories:
     $('#J_content').on('mousedown','#J_jump1',clickHandler1);
 </script>
 ```
+<!-- more -->
 dataPriv.get(elem)得到的结果如下，其中elem是id为J_content的DOM节点,dataPriv.get(elem)中存放的是elem元素的相关数据（这里是绑定的事件信息)。
 
 而dataPriv由 var dataPriv = new Data();而来，jQuery设计了缓存系统，在给元素绑定事件时，事件信息不是直接依附在dom元素上，而是将事件信息放在缓存中，与dom元素关联。这样可以有效的避免内存泄漏。
 ![](/images/jqueryData/QQ20170208-223553@2x.png)
-<!-- more -->
+
 ### jQuery缓存设计原理
 var dataPriv = new Data();
 elemData = dataPriv.get( elem );使用get方法去cache中取值。

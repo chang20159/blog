@@ -24,7 +24,7 @@ categories:
 BSD版本(MAC OSX)不支持--full-time选项，GNU版本的ls支持--full-time
 若想在MAC OSX查看文件最后修改时间，可用
 `ls -lT`
-
+<!-- more -->
 ## DNS相关
 查询 www.dpfile.com 的A记录，并返回简短的结果
 ```
@@ -110,7 +110,7 @@ Address: 180.153.100.167
 Name:   dpfile.fast.cdntip.com
 Address: 122.246.3.105
 ```
-<!-- more -->
+
 ## 文件和目录管理
 - find
 - rmdir

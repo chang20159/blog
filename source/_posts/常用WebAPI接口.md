@@ -12,10 +12,11 @@ categories:
 - nodeValue、innerText 、textContent、innerHTML、outerHTML、outerText
 - clientHeight、scrollHeight、offsetHeight（Left/Top/Width）
 
+<!-- more -->
 要想知道它们有什么不同，还是得先捋捋它们都是谁的属性和方法，看看常用web api的继承关系，想想它们都有哪些属性和方法
 
 ![](/images/note_web_api.png)
-<!-- more -->
+
 ## EventTarget
 ### 方法
 - EventTarget.addEventListener()
