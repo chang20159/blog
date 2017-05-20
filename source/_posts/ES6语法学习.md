@@ -134,7 +134,7 @@ console.log(`value:${value}, array:${array}`); //value:1, array:2,3,4
 
 //用于函数不定长的参数,可避免使用arguments对象
 var rest = function(...args){
-    console.log(`rest.args:${args[1]}`); //rest.args:es5
+-    console.log(`rest.args:${args[1]}`); //rest.args:es5
 };
 rest("es6","es5","es3");
 ```
@@ -155,14 +155,63 @@ array.forEach(function(item,index){
     console.log(`forEach: ${index}:${item}`);  
 });
 ```
+
+
+## Promise对象
+Promise是一个构造函数，函数的参数是一个未来才会结束的事件，而函数的实例是这个事件执行的状态。简洁的说，Promise对象代表一个异步操作，可以获取异步操作的状态。
+有三种状态：
+- pending 进行中
+- resolved 已完成
+- rejected 已失败
+
+而且状态的改变只会从pending到resolved，或则从pending到rejected
+注意：Promise一旦new了就会立即执行，无法中断
+
+用法:
+```javascript
+var promise = new Promise(function(resolve, reject) {
+    ...
+  if (/* 异步操作成功 */){
+    resolve(value);  //执行resolve函数将状态从Pending变为Resolved
+  } else {
+    reject(error);   //执行reject函数将状态从Pending变为rejected
+  }
+});
+
+／/then方法分别指定Resolved状态和Reject状态的回调函数。
+promise.then(function(value) {
+  // Resolved状态时执行，value是resolve函数的参数
+}, function(error) {
+  // rejected状态时执行，value是reject函数的参数
+});
+```
+
+实例方法：
+1、Promise.prototype.then()  为Promise实例添加状态改变时的回调函数
+2、Promise.prototype.catch() 指定发生错误时的回调函数
+3、Promise.all()  接收多个Promise实例，返回一个新的Promise实例
+  例如：p = new Promise([p1,p2,p3])
+  - 只有p1,p2,p3的状态都是已完成时，p的状态才会变成已完成，并将p1,p2,p3的返回值组成一个数组，传递给p的回调函数；
+  - 只要p1,p2,p3有一个失败，p的状态就会变成失败，第一个被reject的实例的返回值，会传递给p的回调函数
+  - 注意：p1、p2、p3都是Promise对象的实例，如果不是，就会先调用Promise.resolve方法，将参数转为Promise实例
+4、Promise.race()  只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。率先改变状态的Promise 实例的返回值，传递给p的回调函数。
+5、Promise.resolve()  将现有对象转为Promise对象
+
+
+## Generator函数
+
+## async 函数
+
+## Proxy和Reflect
+
 ## 类修饰器
 
 ## import和export
 
 ## Set和Map
 
-## Promise对象
 
-## async 函数
-
-## Proxy和Reflect
+## 参考
+- [MDN Promise](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#参见)
+- [深入浅出ES6 ](http://www.infoq.com/cn/es6-in-depth/)
+- [Promises/A+](https://promisesaplus.com/)
