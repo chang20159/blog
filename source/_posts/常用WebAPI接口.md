@@ -9,6 +9,7 @@ categories:
 有时候是不是很容易头大，很多常见的api分不清，看下面这些，能弄明白它们的区别么？
 
 - document.location 与 window.location
+- document.URL 与 document.documentURI
 - nodeValue、innerText 、textContent、innerHTML、outerHTML、outerText
 - clientHeight、scrollHeight、offsetHeight（Left/Top/Width）
 
@@ -178,9 +179,112 @@ Node是一个接口，许多DOM类型从这个接口继承,如Document，Element
 - window.resizeTo(aWidth, aHeight)   动态调整窗口的大小
 
 ## 区分相似接口属性
-- document.location 与 window.location
-- Node.nodeValue、Node.innerText 、Node.textContent 、Element.innerHTML、Element.outerHTML、HTMLElement.outerText
-- Element.clientHeight、Element.scrollHeight、HTMLElement.offsetHeight（Left/Top/Width）
+### document.location 与 window.location
+没发现有啥区别
+### Node.nodeValue、Node.innerText 、Node.textContent 、Element.innerHTML、Element.outerHTML
+1、Node.nodeValue
+返回或设置当前节点的值,不同类型的节点nodeValue值不同.nodeValue为null,对它赋值也没效果.
+|节点类型  | nodeValue的值 
+|:---|:---
+|Node.COMMENT_NODE |注释的文本内容
+|Node.DOCUMENT_FRAGMENT_NODE   | null
+|Node.DOCUMENT_TYPE_NODE        | null
+|Node.ELEMENT_NODE | null
+|Node.TEXT_NODE |  文本节点的内容
+
+2、Node.innerText 
+表示一个节点及其后代的“渲染”文本内容。
+3、Node.textContent 
+表示一个节点及其后代的文本内容
+
+4、Element.innerHTML
+返回元素后代 HTML 文本
+
+5、Element.outerHTML
+返回包含描述元素及其后代的序列化HTML片段
+
+innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。
+innerText 受 CSS 样式的影响，它会触发重排（reflow），但textContent 不会
+textContent会获取所有元素的内容，包括 script 和 style 元素，而 innerText 不会
+innerHTML文本会被解析为HTML,但textContent不会，使用textContent可以防止XSS 攻击
+outerHTML不仅返回元素后代 HTML 文本，还包括元素本身
+例：
+```html
+<div id="container">
+    <p class="p1">111</p>
+    <p class="p2">222</p>
+    <p class="p3">333</p>
+</div>
+```
+
+```
+>$('#container').innerText
+"111
+
+222"
+>$('#container').textContent
+"
+        111
+        222
+    "
+>$('#container').innerHTML
+"
+        <p class="p1">111</p>
+        <p class="p2">222</p>
+    "
+>$('#container').outerHTML
+"<div id="container">
+        <p class="p1">111</p>
+        <p class="p2">222</p>
+    </div>"
+>$('#container').nodeValue
+null
+```
+### Element.clientHeight、Element.scrollHeight、HTMLElement.offsetHeight（Left/Top/Width）
+1、Element.clientHeight
+只读属性，返回**元素内部**的高度(单位像素)，包含内边距，但不包括水平滚动条、边框和外边距。
+2、Element.scrollHeight
+只读属性，计量**元素内容高度**，包括overflow样式属性导致的视图中不可见内容。
+没有垂直滚动条的情况下，scrollHeight值与clientHeight值相同
+3、HTMLElement.offsetHeight
+只读属性,返回该元素的像素高度，高度包含该元素的垂直内边距和边框，且是一个整数。
+通常，元素的offsetHeight是一种衡量标准，包括元素的边框、垂直内边距和元素的水平滚动条（如果存在且渲染的话）和元素的CSS高度。
+
+例如：
+```
+ <div id="container">
+    <div class="content">111</p>
+</div>
+
+#container{
+    width: 200px;
+    height: 200px;
+    border: 5px solid #ff6633;
+    overflow: scroll;
+    padding: 3px;
+}
+.content{
+    height: 300px;
+    width: 100px;
+    border: 10px solid #000;
+}
+```
+
+```
+>$('#container').clientHeight
+206  
+>$('#container').scrollHeight
+326  
+>$('#container').offsetHeight
+216
+
+>$('.content').clientHeight
+300
+>$('.content').scrollHeight
+300
+>$('.content').offsetHeight
+320
+```
 
 ## 参考
 - [EventTarget](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget)
