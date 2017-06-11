@@ -15,18 +15,18 @@ categories:
 <!-- more -->
 ### 这样只能本地查看个人博客
 #### 安装 hexo
-	npm install hexo-cli -g
+    npm install hexo-cli -g
 
 ####  新建项目目录blog,并在此目录下初始化hexo 
-	mkdir blog
-	cd blog
-	hexo init
+    mkdir blog
+    cd blog
+    hexo init
 
 #### 安装依赖
-	npm install
+    npm install
 
 #### 启动hexo
-	hexo server
+    hexo server
 
 命令行会有提示，在浏览器地址栏输入http://localhost:4000，就能看到hexo的实例页面。
 
@@ -50,10 +50,10 @@ categories:
 #### 部署hexo
 首先要安装git插件，这样才能把本地资源部署到github服务器上 
    
-	npm install hexo-deployer-git --save
+    npm install hexo-deployer-git --save
 然后执行
 
-	hexo deploy
+    hexo deploy
 
 现在可以打开https://chang20159.github.io/，并且别人也可以来访问了。
 

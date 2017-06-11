@@ -1,7 +1,9 @@
 ---
 title: 【阅读笔记】JavaScript高级程序设计-面向对象
+tag:
+- JavaScript
 categories:
-- 阅读笔记
+- JavaScript
 ---
 什么是对象？怎样创建对象？
 构造函数、原型和实例之间有什么关系？原型链是怎样构成的？
