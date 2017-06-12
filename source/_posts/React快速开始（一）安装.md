@@ -1,11 +1,16 @@
 ---
-title: React快速开始（文档翻译一）
+title: React快速开始（一）安装
 tag:
 - React
 categories:
 - React
 ---
-打算把React官方文档翻译一遍，有可能也会加入一点自己的理解。官网有更新，我这也更新，这样就不用每次都去看一坨英文了，长痛不如短痛，希望能坚持下去啦。~
+
+>[Installation](https://facebook.github.io/react/docs/installation.html)
+>[Optimizing Performance](https://facebook.github.io/react/docs/optimizing-performance.html)
+
+打算把React官方文档翻译一遍，有可能也会加入一点自己的理解。翻译出来就不用每次都去看一坨英文了，长痛不如短痛，希望能坚持下去啦。~
+
 <!-- more -->
 
 ## 安装
@@ -170,7 +175,3 @@ new webpack.DefinePlugin({
 }),
 new webpack.optimize.UglifyJsPlugin()
     ```
-
-## 参考
-- [https://facebook.github.io/react/docs/installation.html](https://facebook.github.io/react/docs/installation.html)
-- [https://facebook.github.io/react/docs/optimizing-performance.html](https://facebook.github.io/react/docs/optimizing-performance.html)

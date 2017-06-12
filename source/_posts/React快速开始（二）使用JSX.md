@@ -1,13 +1,16 @@
 ---
-title: React使用JSX（文档翻译二）
+title: React快速开始（二）使用JSX
 tag:
 - React
 categories:
 - React
 ---
 
+>[Introducing JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
+
 JSX，全称 JavaScript XML ，一种类XML语言，它是JavaScript的语法扩展。翻译一下官方文档对JSX语法的讲解。
 PS： 项目中使用到的经验会慢慢加上来
+
 <!-- more -->
 ## 为什么使用JSX
 没有使用JSX
@@ -188,5 +191,3 @@ render(){
 }
 ```
 
-## 参考
-- [https://facebook.github.io/react/docs/introducing-jsx.html](https://facebook.github.io/react/docs/introducing-jsx.html)
