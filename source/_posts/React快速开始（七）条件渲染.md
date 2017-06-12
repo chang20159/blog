@@ -1,5 +1,5 @@
 ---
-title:React快速开始（七）条件渲染
+title: React快速开始（七）条件渲染
 tag:
 - React
 categories:
@@ -12,7 +12,7 @@ categories:
 
 考虑这两个组成部分：
 
-```
+```javascript
 function UserGreeting(props) {
   return <h1>Welcome back!</h1>;
 }
@@ -24,7 +24,7 @@ function GuestGreeting(props) {
 
 我们将创建一个Greeting组件，根据用户是否登录，显示其中一个组件：
 
-```
+```javascript
 function Greeting(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
@@ -46,7 +46,7 @@ ReactDOM.render(
 
 考虑这两个注销和登录按钮组件：
 
-```
+```javascript
 function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
@@ -68,7 +68,7 @@ function LogoutButton(props) {
 
 它将根据当前状态呈现&lt;LoginButton />或&lt;LogoutButton />。 它还将从上一个示例中呈现&lt;Greeting />：[Try it on CodePen](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-```
+```javascript
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
@@ -116,7 +116,7 @@ ReactDOM.render(
 ## 逻辑运算符&& （内联If ）
 你可以在[JSX中嵌入任何表达式]()，方法是将其包裹在花括号中，这包括JavaScript逻辑&&运算符。 它可以像这样控制元素呈现：[Try it on CodePen](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-```
+```javascript
 function Mailbox(props) {
   const unreadMessages = props.unreadMessages;
   return (
@@ -146,7 +146,7 @@ ReactDOM.render(
 另一种在元素内部条件渲染的方法是使用JavaScript条件运算符  ? true : false.
 在下面的示例中，我们使用它来有条件地呈现一小段文本。
 
-```
+```javascript
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -159,7 +159,7 @@ render() {
 
 也可以用于更大的表达式：
 
-```
+```javascript
 render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
@@ -181,7 +181,7 @@ render() {
 ## 阻止组件渲染
 在极少数情况下，您可能希望组件隐藏自身，如果是这样，你可以返回null。[Try it on CodePen](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-```
+```javascript
 function WarningBanner(props) {
   if (!props.warn) {
     return null;
@@ -225,4 +225,5 @@ ReactDOM.render(
 );
 ```
 
-**注意： 从组件的render方法返回null不会影响组件生命周期方法的触发。 例如，componentWillUpdate和componentDidUpdate仍将被调用。**
+**注意： 从组件的render方法返回null不会影响组件生命周期方法的触发。 
+例如，componentWillUpdate和componentDidUpdate仍将被调用。**
