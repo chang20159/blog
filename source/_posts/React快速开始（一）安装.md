@@ -176,4 +176,3 @@ new webpack.DefinePlugin({
 new webpack.optimize.UglifyJsPlugin()
     ```
 
-
