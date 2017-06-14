@@ -2,18 +2,18 @@
 ---
 title: React快速开始（四）组件和props
 tag:
-- React
+- React快速开始
 categories:
 - React
 ---
 
 >[Components and Props](https://facebook.github.io/react/docs/components-and-props.html)
 
-使用组件可以将UI拆分成独立的可重复使用的部分，然后可以单独考虑每个组件。从概念上来讲，组件就像JavaScript函数，接受任意输入（称为“props”），并返回描述页面呈现的React元素。
+使用组件可以将UI拆分成独立的可重复使用的部分，然后可以单独考虑每个组件的渲染。从概念上来讲，组件就像JavaScript函数，接受任意输入（称为“props”），并返回描述页面呈现的React元素。
 <!-- more -->
 
-### Functional and Class 组件
-定义组件的最简单的方法是编写一个JavaScript函数：
+### 函数组件和类组件（Functional and Class ）
+定义组件最简单的方法是：编写一个JavaScript函数：
 ```javascript
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -30,7 +30,7 @@ class Welcome extends React.Component {
   }
 }
 ```
-上面这两个组件是等同的，class组件有一些额外的功能，这会在下一章节讨论，这里先使用functional组件来讨论
+上面这两个组件是等同的，class组件有一些额外的功能（state、钩子函数），这会在下一章节讨论，这里先使用functional组件来讨论
 
 ### 渲染组件
 之前我们遇到的元素，都是DOM标签：
@@ -42,8 +42,9 @@ const element = <div />;
 ```javascript
 const element = <Welcome name="Sara" />;
 ```
-当React知道这是一个表示用户定义组件的元素时，它将JSX属性作为单个对象传递给该组件。 我们称这个对象为“props”。
-例如：[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=0010)
+当React知道这是一个表示用户定义的元素时，它将JSX属性作为单个对象传递给该组件。 我们称这个对象为“props”。例如：
+
+[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=0010)
 ```javascript
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -58,13 +59,13 @@ ReactDOM.render(
 我们来看一下这个例子发生了什么？
 
 - 调用ReactDOM.render()渲染&lt;Welcome name =“Sara”/&gt;元素
-- React以{name：'Sara'}作为props调用Welcome组件。
-- Welcome组件返回一个&lt;h1&gt; Hello，Sara &lt;/ h1&gt;元素作为结果。
-- React DOM有效地更新DOM来匹配&lt;h1&gt; Hello，Sara &lt;/ h1&gt; 。
+- React以{name：'Sara'}作为props调用Welcome组件
+- Welcome组件返回一个&lt;h1&gt; Hello，Sara &lt;/ h1&gt;元素
+- React DOM有效地更新DOM来匹配&lt;h1&gt; Hello，Sara &lt;/ h1&gt; 
 
-**注意：组件名称要以大写字母开头，例如，&lt;div /&gt;表示一个DOM标签，但&lt;Welcome /&gt;表示一个组件，并且要求Welcome在作用范围内。**
+**注意：组件名称要以大写字母开头，例如，&lt;div /&gt;表示一个DOM标签，但&lt;Welcome /&gt;表示一个组件，并且要求Welcome在作用范围内（在本模块中或从其他模块引入）。**
 
-我们可以创建一个组件，然后渲染多次
+我们可以创建一个组件，然后呈现多个
 ```javascript
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
@@ -89,7 +90,7 @@ ReactDOM.render(
 
 ### props是只读的
 不管将组件声明为functional还是class，它都不能修改自己的props。 
-看下面这个函数，这样的函数成为‘纯函数’，因为它们不会尝试更改输入，并且总是为相同的输入返回相同的结果。
+看下面这个函数，这样的函数称为‘纯函数’，因为它们不会更改输入，并且相同的输入总是返回相同的结果。
 
 ```javascript
 function sum(a, b) {
@@ -104,10 +105,10 @@ function withdraw(account, amount) {
 ```
 
 再看下组件声明：
-```
+```javascript
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 ```
 React很灵活，但有一个严格的规则：**所有的React组件必须像纯函数一样不能改变props**
-当然，应用程序UI是动态的，在下一节中，我们将介绍一个“state”，state允许React组件根据用户操作，网络响应以及其他任何内容更改组件输出，而不会违反此规则。
+当然，应用程序的UI是动态的，在下一节中，我们将介绍“state”，state允许React组件根据用户操作、网络响应或者其他任何内容来更改组件输出，而不会违反此规则。

@@ -1,7 +1,7 @@
 ---
 title: React快速开始（五）State和生命周期
 tag:
-- React
+- React快速开始
 categories:
 - React
 ---
@@ -25,7 +25,7 @@ function tick() {
 }
 setInterval(tick, 1000);
 ```
-在本节，我们将学习如何让Clock组件真正可重用和可封装， 它将设置自己的计时器并每秒更新一次
+在本节，我们将学习如何让Clock组件真正可重用和可封装， 它可以设置自己的计时器并每秒更新一次
 <!-- more -->
 我们可以从封装时钟开始：
 
@@ -59,10 +59,10 @@ ReactDOM.render(
 ```
 **为了实现这一点，我们需要在Clock组件中添加“state”，state与props相似，但它是组件私有的，完全由组件控制。**          
 
-我们[之前提到过](/2016/07/29/React%20%E6%B8%B2%E6%9F%93%E5%85%83%E7%B4%A0%E5%92%8C%E7%BB%84%E4%BB%B6%EF%BC%88%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E4%B8%89%EF%BC%89/)，定义为class的组件具有一些额外功能，**组件的state就是这样：只能在定义为class 的组件中使用**
+我们之前提到过（React快速开始（四）组件和props），定义为class的组件具有一些额外功能，**组件的state就是这样：只能在定义为class 的组件中使用**
 
 ## 将Function转换为Class
-可以通过下面五个步骤将时钟functional组件转换为class：
+可以通过下面五个步骤将时钟functional组件转换为class组件：
 
 1. 创建一个与functional组件相同名称的ES6 class,并继承[React.Component](https://facebook.github.io/react/docs/react-component.html)
 2. 添加一个名为render()的空方法
@@ -70,6 +70,20 @@ ReactDOM.render(
 4. 在render()方法体中用this.props替换props
 5. 删除剩下的空函数声明
 
+
+functional组件:
+```javascript
+function Clock(props) {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {props.date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+
+```
+class组件:
 ```javascript
 class Clock extends React.Component {
   render() {
@@ -84,8 +98,8 @@ class Clock extends React.Component {
 ```
 Clock组件现在被定义为一个class而不是一个function，这样我们就可以使用一些额外的功能，比如state和组件的生命周期钩子方法（ lifecycle hooks）
 
-## 向class中添加state
-我们将把props中的date移到state中，分三个步骤：
+## 在class中添加state
+现在把props中的date移到state中，分三个步骤：
 1. 将render()方法中的this.props.date 替换为this.state.date
 
     ```javascript
@@ -121,7 +135,7 @@ class Clock extends React.Component {
   }
 }
     ```
-    **注意，我们怎么将props传递给了React.Component的构造函数的,class组件应始终调用父类 的构造函数，并传递props作为参数。**
+    **注意怎么将props传递给了React.Component的构造函数的,class组件应始终调用父类 的构造函数，并传递props作为参数。**
  ```javascript
 constructor(props) {
     super(props);
@@ -167,9 +181,9 @@ ReactDOM.render(
 
 ## 向class中添加生命周期方法
  
-在有许多组件的应用程序中，在销毁组件时释放释放组件占用的资源非常重要。
+在有很多组件的应用程序中，在销毁组件时释放组件占用的资源非常重要。
 
-- 当Clock第一次渲染到DOM时，我们要设置一个定时器， 这在React中称为“挂载”。
+- 当Clock第一次添加到DOM时，我们要设置一个定时器， 这在React中称为“挂载”。
 - 当Clock产生的DOM被删除时，我们也想清除该计时器， 这在React中称为“卸载”。
 - 当组件挂载和卸载时，我们可以在组件类上声明特殊的方法来做一些事情：
 
@@ -198,10 +212,10 @@ class Clock extends React.Component {
   }
 }
 ```
-
+如上componentDidMount和componentWillUnmount，
 这些方法称为 生命周期钩子函数 "lifecycle hooks"
 
-在组件已经渲染到DOM树之后，会执行componentDidMount()，在这里最适合设置一个定时器
+在组件已经添加到DOM树之后，会执行componentDidMount()，在这里最适合设置一个定时器
 ```javascript
  componentDidMount() {
     this.timerID = setInterval(
@@ -212,18 +226,19 @@ class Clock extends React.Component {
 ```
 注意，我们将timerID 保存在this中。
 
-**this.props由React本身设置，this.state具有特殊的含义（根据用户操作改变自身状态），如果需要存储一些不用于更新页面渲染的字段，可以将它添加到类中，比如这里的timerID。**
+**this.props由React设置，this.state具有特殊的含义（根据用户操作改变自身状态），如果需要存储一些不用于更新页面渲染的字段，可以将它添加到类中，比如这里的timerID。**
 
 不在render()中使用的，不应该把他放在this.state中，比如这里的timerID
 
-我们将在组件componentWillUnmount()生命周期钩子中拆下计时器：
+在组件componentWillUnmount()生命周期钩子中拆下计时器：
 ```javascript
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 ```
 
-最后，我们将实现每秒运行的tick（）方法。它将使用this.setState()来更新组件状态。[Try it on CodePen](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
+最后，我们实现每秒运行的tick()方法。它使用this.setState()来更新组件状态。
+[Try it on CodePen](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 ```javascript
 class Clock extends React.Component {
   constructor(props) {
@@ -267,7 +282,7 @@ ReactDOM.render(
 
 让我们快速回顾一下发生了什么以及方法调用的顺序(渲染过程)：
 
-1）当<Clock />传递给ReactDOM.render()时，React调用Clock组件的构造函数。由于Clock需要显示当前时间，所以它newy一个当前时间对象来初始化this.state。我们稍后会更新此状态。（constructor）
+1）当<Clock />传递给ReactDOM.render()时，React调用Clock组件的构造函数。由于Clock需要显示当前时间，所以它new一个当前时间对象来初始化this.state。稍后会更新此状态。（constructor）
 
 2）React调用Clock组件的render()方法,获取应该渲染的内容，更新DOM，使其与Clock的render输出一致。（render ）
 
@@ -283,12 +298,13 @@ ReactDOM.render(
 
 ### 不要直接修改state
 比如下面这样做，不会重新渲染组件
-```
+```javascript
 // Wrong
 this.state.comment = 'Hello';
 ```
+
 应该使用setState()
-```
+```javascript
 // Correct
 this.setState({comment: 'Hello'});
 ```
@@ -375,8 +391,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-
-所以setState()有两种形式
+先执行了console.log('state: ',this.state.counter)，说明setState()是异步更新的
+setState()有两种形式
 1、setState() 接收一个对象，在setState()中访问this.state可能不是最新的state
 2、setState(）接收一个函数，这个函数接收最新的state作为第一个参数，更新应用后的props作为第二个参数
 
@@ -391,7 +407,7 @@ constructor(props) {
     };
 }
 ```
-你可以使用setState()调用单独更新一个变量：
+你可以调用setState()单独更新一个变量：
 
 ```javascript
 componentDidMount() {
@@ -450,8 +466,8 @@ componentDidMount() {
 ```
 **所以，记住了！！state更新是浅合并！！state中的属性值会被完全替代**
 
-## 数据从上至下传递
-父组件和子组件都不能知道某个组件是有状态还是无状态，它们也不必关心是被定义为函数还是类，这就是为什么state通常被称为是局部的、被封装的。 除了拥有并设置它的组件之外，任何其他组件都不能访问这个state。
+## state从上至下传递
+state是局部的、组件私有的，一个组件的父组件和子组件都不能知道这个组件是有状态还是无状态，它们也不需要关心这个组件是被定义为函数还是类。 除了拥有并设置它的组件之外，任何其他组件都不能访问这个state。
 
 但是组件可以通过props将它的state传递给子组件
 ```html
@@ -470,11 +486,11 @@ function FormattedDate(props) {
 }
 ```
 **这通常被称为“自顶向下”或“单向”数据流。**
-任何状态始终由某个特定组件所有，并且从该状态导出的任何数据只能影响树中“下方”的组件。
+任何state始终由某个特定组件所有，并且这个组件的state只能影响它下面的子组件。
 
-你可以将一个组件树的props想象成瀑布，每个组件的状态就像一个额外的水源，它连接在一个任意点，但也往下流动。
+可以将一个组件树的props想象成瀑布，每个组件的state就像一个额外的水源，在某一个点与props会合，并且也往下流动。
 
-为了表明所有组件都是真正隔离的，我们可以创建一个应用程序组件，呈现三个&lt;Clock&gt;：
+为了证明所有组件都是真正孤立互不影响的，我们可以创建一个App组件，呈现三个&lt;Clock&gt;：
 ```javascript
 function App() {
   return (
@@ -492,7 +508,7 @@ ReactDOM.render(
 );
 ```
 每个Clock都设置自己的定时器并独立更新。
-在React应用程序中，不管组件是有状态还是无状态，都认为是组件自身的实现细节.
+在React应用中，不管组件是有状态还是无状态，都认为是组件自身的实现细节.
 可以在有状态组件中使用无状态组件，反之亦然。
 
 

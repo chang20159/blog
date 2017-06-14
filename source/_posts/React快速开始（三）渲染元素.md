@@ -1,16 +1,16 @@
 ---
 title: React快速开始（三）渲染元素
 tag:
-- React
+- React快速开始
 categories:
 - React
 ---
 
 >[Rendering Elements](https://facebook.github.io/react/docs/rendering-elements.html)
 
-元素是React应用最小构建块，每一个元素都描述了呈现在屏幕上的内容。不同于真是的DOM元素，React元素就是一个普通的对象，创建成本很低，React DOM负责更新真实DOM与React元素匹配。
+元素是React应用最小构建块，每一个元素都描述了呈现在屏幕上的内容。不同于真实的DOM元素，React元素就是一个普通的对象，创建成本很低，React DOM负责更新真实DOM与React元素匹配。
 
-关于组件、元素和实例可以看这个[React Components, Elements, and Instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+关于组件、元素和实例可以看这个 [React Components, Elements, and Instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html) 或者 [React 组件，元素和实例 ](https://www.oschina.net/translate/react-components-elements-and-instances)
 
 <!-- more -->
 
@@ -51,10 +51,10 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-**注意: 实际上，大多数React应用只会调用ReactDOM.render()一次,在接下来的章节中，我们会学习如何将这些代码封装到有状态的组件中。**
+**实际上，大多数React应用只会调用ReactDOM.render()一次,在接下来的章节中，我们会学习如何将这些代码封装到有状态的组件中。**
 
 ## React仅在必要时更新
-尽管我们创建了一个描述整个UI树的元素，但只有内容已经改变的节点才被React DOM更新。因为**ReactDOM会将元素及其子元素与上一个元素进行比较，并且只更新实际改变的DOM。**
+尽管我们创建了一个描述整个UI树的元素，但只有内容改变的节点才被React DOM更新。因为**ReactDOM会将元素及其子元素与之前的元素进行比较，并且只更新实际改变的DOM。**
 
 
 

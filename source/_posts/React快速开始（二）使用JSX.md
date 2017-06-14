@@ -1,26 +1,16 @@
 ---
 title: React快速开始（二）使用JSX
 tag:
-- React
+- React快速开始
 categories:
 - React
 ---
 
 >[Introducing JSX](https://facebook.github.io/react/docs/introducing-jsx.html)
 
-JSX，全称 JavaScript XML ，一种类XML语言，它是JavaScript的语法扩展。翻译一下官方文档对JSX语法的讲解。
-PS： 项目中使用到的经验会慢慢加上来
+JSX，全称 JavaScript XML ，一种类XML语言，它是JavaScript的语法扩展。
 
-<!-- more -->
-## 为什么使用JSX
 没有使用JSX
-
-```javascript
-const element = <h1>Hello, world!</h1>;
-```
-
-使用JSX
-
 ```javascript
 var element = React.createElement(
   "h1",
@@ -29,11 +19,18 @@ var element = React.createElement(
 );
 ```
 
+使用JSX
+```javascript
+const element = <h1>Hello, world!</h1>;
+```
 可以看出使用JSX可以让代码可读性更高、语义更清晰、更易维护。JSX类似于模板引擎，但功能更强大
-
+<!-- more -->
 ## 语法
 **1、可以在JSX中嵌入任何JavaScript表达式，方法是将其包装在花括号中。**
 
+  ```javascript
+  const element = (<h1>Hello, {formatName(user)}!</h1>);
+  ```
 **2、将JSX分割成多行，可读性更好。**    
 这不是必需的，但在这样做的时候，建议把它放在括号中，以避免自动分号插入的陷阱。
 
@@ -44,7 +41,7 @@ var element = React.createElement(
     </h1>
   );
   ```
-**3、JSX也是一个表达式，编译后，JSX表达式成为常规的JavaScript对象。**        
+**3、JSX也是一个表达式，编译后，JSX表达式就是常规的JavaScript对象。**        
 这意味着可以在if语句和for循环中使用JSX、将其分配给变量、接受它作为参数、并从函数返回它
 
   ```javascript
@@ -57,7 +54,7 @@ function getGreeting(user) {
   ```
 **4、用JSX指定属性**
   引号和花括号不能同时使用
-  
+   **注意: 在JSX中，属性使用驼峰式命名，例如class变为className,font-size变为fontSize**
   ```javascript
   //用引号指定字符串作为属性
   const element = <div tabIndex="0"></div>;
@@ -66,7 +63,7 @@ function getGreeting(user) {
 
   ```
   
-  **注意: 在JSX中，属性使用驼峰式命名，例如class变为className,font-size变为fontSize**
+ 
 **5、用JSX指定children**    
   如果标签为空，则可以使用/>关闭
   
@@ -85,8 +82,8 @@ function getGreeting(user) {
 )
   ```
 **6、JSX可以防止脚本注入攻击，在JSX中嵌入用户输入是安全的**
-默认情况下，React DOM会在渲染之前转义嵌入在JSX中的任何值，确保不会注入任何未明确写入应用程序的内容。 例如
-```
+默认情况下，React DOM会在渲染之前转义嵌入在JSX中的任何值，确保不会注入任何未明确写入应用程序的内容。 例如：
+```html
 <div>{'First &middot; Second'}</div>
 ```
 花括号中的内容并不会展示为 First · Second        
@@ -109,7 +106,7 @@ Babel将JSX编译成React.createElement（）调用。
   );
   ReactDOM.render(element, document.getElementById("root"));
   ```
-  
+编译后：
   ```javascript
   const element = React.createElement(
     'h1',
@@ -119,7 +116,7 @@ Babel将JSX编译成React.createElement（）调用。
   ReactDOM.render(element, document.getElementById("root"));
   ```
 React.createElement（）会执行一些检查帮助你编写无错误代码，
-基本上它会创建一个如下所示的对象：
+它会创建一个基本类似于如下所示的对象：
   
   ```javascript
   // 注意：这个结构被简化了
@@ -131,7 +128,7 @@ React.createElement（）会执行一些检查帮助你编写无错误代码，
     }
   };
   ```
-这些对象称为“React元素”, React读取这些对象，并使用它们构造DOM呈现页面最新状态。
+**这些对象称为“React元素”**, React读取这些对象，并使用它们构造DOM呈现页面最新状态。
 
 **另外，使用ReactDOM.render()，React可以嵌入到使用其他JavaScript UI库的应用程序中。**
 

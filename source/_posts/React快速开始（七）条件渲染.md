@@ -1,16 +1,16 @@
 ---
 title: React快速开始（七）条件渲染
 tag:
-- React
+- React快速开始
 categories:
 - React
 ---
 
 >[Conditional Rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 
-在React中，可以创建不同的组件来封装所需的行为，你可以选择只渲染其中的一部分。
+在React中，可以选择在不同条件下渲染不同组件。
 
-考虑这两个组成部分：
+这里有两个组件：
 
 ```javascript
 function UserGreeting(props) {
@@ -22,7 +22,7 @@ function GuestGreeting(props) {
 }
 ```
 
-我们将创建一个Greeting组件，根据用户是否登录，显示其中一个组件：
+现在创建一个Greeting组件，根据用户是否登录，显示其中一个组件：
 
 ```javascript
 function Greeting(props) {
@@ -42,9 +42,9 @@ ReactDOM.render(
 这个例子根据props中的isLoggedIn渲染出不同的内容
 
 ## 元素变量
-你可以使用变量来存储元素。 这可以帮助您有条件地渲染组件的一部分，而输出的其余部分不会更改。
+可以使用变量来存储元素，并且根据条件存储元素，这样可以实现有条件地渲染。
 
-考虑这两个注销和登录按钮组件：
+这里有两个组件，注销和登录按钮：
 
 ```javascript
 function LoginButton(props) {
@@ -64,9 +64,7 @@ function LogoutButton(props) {
 }
 ```
 
-在下面的例子中，我们将创建一个名为LoginControl的有状态组件。
-
-它将根据当前状态呈现&lt;LoginButton />或&lt;LogoutButton />。 它还将从上一个示例中呈现&lt;Greeting />：[Try it on CodePen](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+现在创建一个有状态组件LoginControl，它将根据当前状态呈现&lt;LoginButton />或&lt;LogoutButton />。：[Try it on CodePen](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
 ```javascript
 class LoginControl extends React.Component {
@@ -114,7 +112,9 @@ ReactDOM.render(
 在JSX中有几种内联条件的方法，如下所述。
 
 ## 逻辑运算符&& （内联If ）
-你可以在[JSX中嵌入任何表达式]()，方法是将其包裹在花括号中，这包括JavaScript逻辑&&运算符。 它可以像这样控制元素呈现：[Try it on CodePen](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+可以在JSX中嵌入任何表达式并将其包裹在花括号中，JavaScript逻辑&&运算符就可以放在{}中。 
+
+它可以像这样控制元素呈现：[Try it on CodePen](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
 ```javascript
 function Mailbox(props) {
@@ -138,13 +138,13 @@ ReactDOM.render(
 );
 ```
 
-在JavaScript中，true && 表达式 结果为表达式的结果，并且 false && 表达式 总是计算为false。
+在JavaScript中，true && 表达式的结果为表达式的结果，并且 false && 表达式 总是计算为false。
 
 因此，如果条件为真，则&&后面的元素将显示。 如果是false，React会忽略并跳过它。
 
 ## 条件运算符（内联if-Else）
 另一种在元素内部条件渲染的方法是使用JavaScript条件运算符  ? true : false.
-在下面的示例中，我们使用它来有条件地呈现一小段文本。
+下面的示例，有条件地呈现一小段文本。
 
 ```javascript
 render() {
@@ -174,12 +174,13 @@ render() {
 }
 ```
 
-您可以根据您和您的团队认为更易读的方式选择合适的方法。 
+这个可以根据你认为更易读的方式选择合适的方法。 
 
 还要记住，如果条件太复杂，可以试试提取组件
 
 ## 阻止组件渲染
-在极少数情况下，您可能希望组件隐藏自身，如果是这样，你可以返回null。[Try it on CodePen](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+在极少数情况下，可能希望组件隐藏自身，如果是这样，你可以返回一个null。
+[Try it on CodePen](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
 ```javascript
 function WarningBanner(props) {
