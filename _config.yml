@@ -66,7 +66,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-next
+theme: hexo-theme-next-510
 
 feed:
   type: atom
@@ -80,6 +80,14 @@ deploy:
   type: git
   repo: 
     github: git@github.com:chang20159/chang20159.github.io.git
-    coding: git@git.coding.net:chang20159/chang20159.git
+    # coding: git@git.coding.net:chang20159/chang20159.git
   branch: master
+
+
+## search
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 

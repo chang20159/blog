@@ -10,7 +10,7 @@ categories:
 
 元素是React应用最小构建块，每一个元素都描述了呈现在屏幕上的内容。不同于真实的DOM元素，React元素就是一个普通的对象，创建成本很低，React DOM负责更新真实DOM与React元素匹配。
 
-关于组件、元素和实例可以看这个 [React Components, Elements, and Instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html) 或者 [React 组件，元素和实例 ](https://www.oschina.net/translate/react-components-elements-and-instances)
+关于组件、元素和实例可以看这个 [React Components, Elements, and Instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
 
 <!-- more -->
 
