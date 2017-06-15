@@ -17,8 +17,8 @@ avatar: /images/photoo.jpg
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://chang20159.com
 root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink: :title/
+permalink_defaults: :year/:month/:day/:title/
 
 # Directory
 source_dir: source
