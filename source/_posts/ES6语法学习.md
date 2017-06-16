@@ -116,7 +116,9 @@ let array = ["ch"]
 
 ## ... 运算符
 ..运算符有两种，spread运算符和rest运算符,作用相反
-### spread运算符
+
+### 数组
+#### spread运算符
 spread运算符是将数组或类数组对象展开成一系列用逗号隔开的值
 ```javascript
 let array = [1,2,3];
@@ -125,7 +127,7 @@ console.log(new_array);
 let copy_array = [...array];   //数组深拷贝
 console.log(copy_array);
 ```
-### rest运算符
+#### rest运算符
 将逗号隔开的值序列组合成一个数组
 ```javascript
 //结合数组的解构赋值
@@ -137,6 +139,25 @@ var rest = function(...args){
 -    console.log(`rest.args:${args[1]}`); //rest.args:es5
 };
 rest("es6","es5","es3");
+```
+
+### 对象
+#### spread运算符
+```javascript
+let object = {a:1,b:2};
+let object1 = {...object};
+object1.a = 2;
+//object1 : {a:2,b:2}
+//object : {a:1,b:2}
+```
+#### rest运算符
+
+```javascript
+let object = {a:1,b:2};
+let {...object2} = {a:1,b:2};
+
+console.dir(object2);
+//{a:1,b:2}
 ```
 
 ## for...of循环

@@ -1,5 +1,5 @@
 ---
-title: Prism:轻量级代码语法高亮库
+title: Prism 轻量级代码语法高亮库
 tag:
 - 语法高亮
 categories:

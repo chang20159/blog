@@ -1,5 +1,5 @@
 ---
-title: jQuery源码 - 事件绑定与解绑
+title: 【jQuery源码】事件绑定与解绑
 tag:
 - jQuery3.1.1源码
 categories:
