@@ -1,1 +1,0 @@
-## gm-self-help-pc-static
