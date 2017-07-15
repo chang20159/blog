@@ -92,6 +92,8 @@ app.message_not_proxyed = 'not_proxyed'
 
 --------分割线------这里是粗糙笔记
 
+**vue组件不能从父组件接收所有prop吗？**
+
 跨组件数据流，自定义事件通信以及构建工具集成
 
 所有的 Vue.js 组件其实都是被扩展的 Vue 实例。
@@ -109,7 +111,7 @@ app.message_not_proxyed = 'not_proxyed'
 缩写
 
 计算属性的缓存特性
-
+/Users/chang/vue/vue-example/build
 computed vs methods vs watch
 
 
@@ -136,3 +138,4 @@ key的用途
 <a @click="doSomething"></a>
 ```
 
+v-once 与 shouldComponentUpdate
