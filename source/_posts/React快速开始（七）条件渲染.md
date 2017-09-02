@@ -9,7 +9,7 @@ categories:
 >[Conditional Rendering](https://facebook.github.io/react/docs/conditional-rendering.html)
 
 在React中，可以选择在不同条件下渲染不同组件。
-
+<!-- more -->
 这里有两个组件：
 
 ```javascript

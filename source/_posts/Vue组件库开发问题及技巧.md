@@ -6,15 +6,12 @@ categories:
 - Vue
 ---
 
-Vue组件库开发，记录过程中的问题和经验。 手机端Vue组件，戳>  [Swan UI](https://github.com/future-team/swan-ui)
+Vue组件库开发，记录过程中的问题和经验。 手机端Vue组件库，戳>  [Swan UI](https://future-team.github.io/swan-ui/examples/index.html#/)
 
 <!--more-->
 
-## 常见问题
-### 一、@click.native 组件原生事件触发两次
-调成手机模式，原因还没弄清楚...囧
 
-### 二、props检测设定任意类型
+### 一、props检测设定任意类型
 
 设置为null
 
@@ -24,7 +21,7 @@ props: {
 }
 ```
 
-### 三、组件外部传入class无法覆盖组件内部动态class
+### 二、组件外部传入class无法覆盖组件内部动态class
 
 当给自定义组件添加class时，组件根元素上class的顺序是：
 
@@ -64,43 +61,8 @@ props: {
 <sw-button :class="{'outer-class':true}">按钮</sw-button>
 ```
 
-### 四、根节点需唯一
-<p style="color:red;">
-Component template should contain exactly one root element. If you are using v-if on multiple elements, use v-else-if to chain them instead.
-</p>
 
-外包一个div
-
-### 五、找不到vue-template-compiler模块
-<p style="color:red;">
-ERROR in ./src/app.vue
-Module build failed: Error: Cannot find module 'vue-template-compiler'
-</p>
-			
-```npm install vue-template-compiler --save``` 不行
-
-加上```sudo npm install vue-template-compiler```
-
-### 六：组件未注册
-<p style="color:red;">
-
-[Vue warn]: Unknown custom element: <sw-button> - did you register the component correctly? For recursive components, make sure to provide the "name" option.
-
-</p>
-
-添加：
-
-- Vue.use(SwanUI)
-- Vue.component(Button.name, Button)
-
-
-### 七： webpack2中的后缀-loader不能省略
-<p style="color:red;">
-Module build failed: Error: The node API for `babel` has been moved to `babel-core`.</p>
-
-webpack中的loader：  babel 改成 babel-loader
-
-### 八、样式文件中引入npm安装包报错
+### 三、样式文件中引入npm安装包报错
 
 <p style="color:red;">
 Module not found: Error: Can't resolve './phoenix-styles/less/public.less' in '/Users/chang/future-team/swan-ui/src/modules'
@@ -113,7 +75,7 @@ Module not found: Error: Can't resolve './phoenix-styles/less/public.less' in '/
  <style lang="less" src="phoenix-styles/less/public.less"></style>
  ```
  
-### 九、class属性不能作为组件的prop
+### 四、class属性不能作为组件的prop
 <p style="color:red;">
  "class" is a reserved attribute and cannot be used as component prop.
 </p>
@@ -123,9 +85,7 @@ Module not found: Error: Can't resolve './phoenix-styles/less/public.less' in '/
 >Vue handles passing the class attribute through automatically - I think you can just delete the entire object and prop declaration and it will continue working fine.
 
 
-## 开发技巧
-
-### 一、将属性合并赋值
+### 五、将属性合并赋值
 
 利用v-bind可以直接赋值对象
 
@@ -141,8 +101,8 @@ Module not found: Error: Can't resolve './phoenix-styles/less/public.less' in '/
 </template>
 ```
 
--
-### 二、 在vue的render方法中使用JSX
+
+### 六、 在vue的render方法中使用JSX
 
 babel配置文件.babelrc添加插件 transform-vue-jsx
 
@@ -160,7 +120,7 @@ babel配置文件.babelrc添加插件 transform-vue-jsx
 npm install --save-dev babel-plugin-transform-vue-jsx
 ```
 
-### 三、自定义 v-model + mixins
+### 七、自定义 v-model + mixins
 隐藏/显示类组件采用双向绑定，避免书写关闭打开等样板代码。
 
 ```javascript
@@ -191,7 +151,7 @@ export default {
 }
 ```
 
-### 四、声明组件props时，同时声明组件内部使用的其他组件的props
+### 八、声明组件props时，同时声明组件内部使用的其他组件的props
 
 ```xml
 <template>
@@ -220,13 +180,174 @@ export default {
 </script>
 ```
 
-### 五、双向watch或双向computed解决使用v-model的问题
+**注意： 2.4.0版本新增了 inheritAttrs选项和实例属性$attrs，可以这样写了：**
 
-## 我希望vue可以改进的地方
+```xml
+<template>
+    <sw-checkbox  :type="type" 
+    				 v-bind="$attrs" 
+    				 @change="handleChange" />
+</template>
+```
 
-- props校验希望能自定义错误提示信息
-- props属性必须声明才有用，这对类似Input之类的组件扩展性不好，需要把input属性都声明出来，有点啰嗦。
+```javascript
+<script>
+    import SwCheckbox from '../checkbox/Checkbox.vue'
+    export default {
+        name: 'SwRadio',
+        inheritAttrs: false,
+        components: {SwCheckbox},
+        methods: {
+            handleChange(value,evt){
+                this.$emit('change',value,evt)
+            }
+        },
+        props: {
+            type: {
+                type: String,
+                default: 'radio'
+            }
+        }
+    }
+</script>
+```
 
+### 九、双向watch或双向computed解决使用v-model的问题
+
+例如使用dialog组件：
+
+```xml
+<sw-dialog title="提示" v-model="visible">
+    您确定以及肯定要提交吗？
+</sw-dialog>
+```
+当另一个组件Alert使用dialog组件时：
+
+```xml
+<template>
+	<sw-dialog title="提示" v-model="visible">
+	    {{content}}
+	</sw-dialog>
+</template>
+```
+
+那如果我们要使用Alert组件:
+
+```xml
+<sw-alert title="提示" v-model="visible" content="您确定以及肯定要提交吗？" />
+```
+
+由于内部dialog组件使用双向绑定，弹框关闭时，visible属性会被直接更改，不能通知sw-alert。这种情况在使用数据管理框架例如vuex时也可能出现。
+
+那我们可以添加一个中间属性，使用双向watch或双向computed来解决。
+
+在alert组件组件中双向watch：
+
+```xml
+<sw-alert title="提示"  v-model="currentVisible" content="您确定以及肯定要提交吗？" />
+```
+
+```javascript
+model: {
+    prop: 'visible',
+    event: 'toggle'
+}
+watch: {
+    visible(val){
+        this.currentVisible = val
+    },
+    currentVisible(val){
+        this.$emit('toggle',val) 
+    }
+}
+```
+
+或者双向computed(这个没有具体实施，应该是可以的):
+
+```javascript
+model: {
+    prop: 'visible',
+    event: 'toggle'
+}
+computed: {
+    visible(){
+    	 this.$emit('toggle',this.currentVisible) 
+    	 return this.currentVisible
+    },
+    currentVisible(){
+        return  this.visible
+    }
+}
+```
+
+### 十、props属性不需要声明也可以使用
+
+  2.4.0版本之前，父作用域传递的属性，在props中声明才可以使用，这对类似Input之类的组件扩展性不好，需要把input属性都声明出来，有点啰嗦。
+  
+  vue 2.4.0新增的inheritAttrs选项和实例属性$attrs， 可以解决这个问题啦～
+  
+  **inheritAttrs选项:**
+  
+  >默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。
+  
+  >当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 inheritAttrs 到 false，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 $attrs 可以让这些特性生效，且可以通过 v-bind 显性的绑定到非根元素上。
+  
+ >**注意：这个选项不影响 class 和 style 绑定。**
+
+**实例属性$attrs:**
+
+>包含了父作用域中不被认为 (且不预期为) props 的特性绑定 **(class 和 style 除外)**。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建更高层次的组件时非常有用。
+  
+之前对于Input组件，我需要声明尽可能多的常用的input的原生属性，并手动分离出来添加到input标签上：
+
+```xml
+<input v-bind="nativeProps"/>
+```
+
+```javascript
+computed: {
+	nativeProps(){
+        let props = ['name','maxlength','minlength','disabled','autocomplete','autofocus','min','max','readonly']
+	    let nativeProps = {}
+	    props.forEach((key)=>{
+	        if(this.$props[key]){
+	            nativeProps[key] = this.$props[key]
+	        }
+	    })
+	    return nativeProps
+	}
+},
+props:{
+    visible: Boolean,
+    clear: Boolean,
+    //以下是input原生属性
+	placeholder: String,
+    disabled: Boolean,
+    maxlength: Number,
+    minlength: Number,
+    autocomplete: String,
+    autofocus: Boolean,
+    readonly:Boolean,
+    value: null,
+    name: null,
+    min:null,
+    max:null
+}
+```
+
+现在可以这样写了：
+
+```xml
+<input v-bind="$attrs"/>
+```
+
+```javascript
+inheritAttrs: false,
+props: {
+	visible: Boolean,
+	clear: Boolean
+}
+```
 
 
 

@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 前端Girl
-subtitle: 
-description: 少年锦时
-author: YANFANG・CHANG
+title: 茉莉蜜茶only的博客
+subtitle: 非洲茉莉 性喜温暖 好阳光
+description: 
+author: C^.Y.^F
 language: zh-Hans
 timezone:
 
@@ -66,7 +66,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-next
+theme: hexo-theme-yilia-custom
 
 feed:
   type: atom
@@ -97,6 +97,25 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
 
 
 
