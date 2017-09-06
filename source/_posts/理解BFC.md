@@ -4,6 +4,7 @@ tag:
 - CSS
 categories:
 - CSS
+declare: true
 ---
 
 网上有太多关于BFC的文章，看了很多，还是不能理解。想想还是看全英文的官方文档，关于BFC的规则，在w3c文档中的[第9章](https://www.w3.org/TR/CSS21/visuren.html)和[第10章](https://www.w3.org/TR/CSS21/visudet.html)全局搜一下Block formatting context，就能找到。

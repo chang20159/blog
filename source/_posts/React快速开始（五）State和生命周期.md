@@ -9,7 +9,7 @@ categories:
 >[State and Lifecycle](https://facebook.github.io/react/docs/state-and-lifecycle.html)
 
 前面介绍过时钟的例子，通过ReactDOM.render()来改变页面渲染内容
-
+<!-- more -->
 ```javascript
 function tick() {
   const element = (

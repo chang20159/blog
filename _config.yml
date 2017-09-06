@@ -9,6 +9,7 @@ description:
 author: C^.Y.^F
 language: zh-Hans
 timezone:
+github: https://github.com/chang20159
 
 # 头像
 avatar: /images/photoo.jpg
@@ -67,6 +68,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-yilia-custom
+# theme: hexo-theme-next
 
 feed:
   type: atom
@@ -116,6 +118,5 @@ jsonContent:
       excerpt: false
       categories: false
       tags: true
-
 
 

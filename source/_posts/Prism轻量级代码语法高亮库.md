@@ -5,6 +5,7 @@ tag:
 categories:
 - 工具
 ---
+
 Prism是一个轻量的、可扩展的代码语法高亮库，根据现代web标准设计。目前有很多网站在用，JavaScript的创始人Brendan Eich的个人博客也是用的Prism。Prism支持很多种语言，并且扩展性很好，它要求代码放在code标签下，code标签可包含在pre标签内。下面是多种写法下的显示效果。
 
 ![](/images/prism/QQ20161123-1@2x.png)

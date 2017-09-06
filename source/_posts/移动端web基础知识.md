@@ -2,8 +2,9 @@
 title: 移动web基础知识
 categories:
 - 工作
-toc: true
+declare: true
 ---
+
 <div align="center">
 <img src="../images/mobile_web_knowledge/mobile_web_knowledge.png" height="250"/>
 </div>
