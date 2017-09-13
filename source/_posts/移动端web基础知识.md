@@ -1,5 +1,5 @@
 ---
-title: 移动web基础知识
+title: 移动端web基础
 categories:
 - 工作
 declare: true
