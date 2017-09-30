@@ -5,7 +5,7 @@ categories:
 declare: true
 ---
 
-<img src="http://saki007ster.github.io/public/images/flex-container.png"/>
+<img src="../images/flexbox/flexbox1.png"/>
 <!--more-->
 ## 基本概念
 - 主轴： main axis

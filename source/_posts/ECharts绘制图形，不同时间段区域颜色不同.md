@@ -8,10 +8,15 @@ categories:
 ECharts很强大，所以各种配置项和参数也超多，要想画出想要的效果，还真是一个细致活儿。在项目中使用echarts需要先 npm install echarts --save 或者直接下载js文件引入到项目中。
 可以先在官网上用模拟数据调试好配置项，然后把options直接copy到项目里，刚开始不知道可以在官网上调试，耽误了好多时间。
 这次画的曲线有一个特点：有促销和无促销的面积区域需要用颜色区分，有促销：橙色，无促销：灰色。
-![](/images/echarts/销售量曲线图.png)
+
+<div align="center">
+<img src="../images/echarts/销售量曲线图.png" width="400"/>
+</div>
+
 <!-- more -->
 ### 最终效果
-![](/images/echarts/QQ20161210-1@2x.png)
+<img src="../images/echarts/QQ20161210-1@2x.png" width="400"/>
+
 ### 代码
 下面是在ECharts调试的代码，也可以到http://gallery.echartsjs.com/editor.html?c=xHJpzlHKQe查看
 - 按照时间顺序和每天的状态status，将数据分割成多个series,每个series设置不同的areaStyle和itemStyle。
