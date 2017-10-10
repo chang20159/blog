@@ -175,29 +175,29 @@ Access-Control-Allow-Origin: <origin>
 
 1、添加一个过滤器
 
-	```java
-	public class CrossDomainFilter implements Filter{
-	    public void init(FilterConfig filterConfig) throws ServletException {}
-	    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-	        HttpServletResponse resp = (HttpServletResponse)servletResponse;
-	        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
-	        filterChain.doFilter(servletRequest,servletResponse);
-	    }
-	    public void destroy() {}
-	}
-	```
+```java
+public class CrossDomainFilter implements Filter{
+    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletResponse resp = (HttpServletResponse)servletResponse;
+        resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+        filterChain.doFilter(servletRequest,servletResponse);
+    }
+    public void destroy() {}
+}
+```
 2、然后在web.xml文件中添加过滤器配置：
 
-	```xml
-	<filter>
-        <filter-name>crossDomainFilter</filter-name>
-        <filter-class>com.example.cors.filter.CrossDomainFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>crossDomainFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-	```
+```xml
+<filter>
+    <filter-name>crossDomainFilter</filter-name>
+    <filter-class>com.example.cors.filter.CrossDomainFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>crossDomainFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+```
 
 3、然后重新启动tomcat，client重新发送请求`http://localhost:8000/index.html`
 
@@ -217,23 +217,25 @@ Access-Control-Allow-Origin: <origin>
 符合以下条件的可视为简单请求：
 
 1、使用下列HTTP方法之一
-	- GET
-	- HEAD
-	- POST，并且Content-Type的值在下列之一： 
-		- text/plain
-		- multipart/form-data
-		- application/x-www-form-urlencoded
+	
+- GET
+- HEAD
+- POST，并且Content-Type的值在下列之一： 
+	- text/plain
+	- multipart/form-data
+	- application/x-www-form-urlencoded
 		
 2、并且请求头中只有下面这些
-	- Accept
-	- Accept-Language
-	- Content-Language
-	- Content-Type （需要注意额外的限制）
-	- DPR
-	- Downlink
-	- Save-Data
-	- Viewport-Width
-	- Width
+	
+- Accept
+- Accept-Language
+- Content-Language
+- Content-Type （需要注意额外的限制）
+- DPR
+- Downlink
+- Save-Data
+- Viewport-Width
+- Width
 
 不满足上述要求的在发送正式请求前都要先发送一个预检请求，预检请求以OPTIONS方法发送，浏览器通过请求方法和请求头能够判断是否发送预检请求。
 
@@ -365,7 +367,7 @@ public class CrossDomainFilter implements Filter{
 
 Client: 
 
-```
+```javascript
 var containerElem = document.getElementById('container')
 new Request().send('http://localhost:8080/server/testCookie',{
 	success: function(data){
@@ -376,7 +378,7 @@ new Request().send('http://localhost:8080/server/testCookie',{
 
 Server:
 
-```
+```java
 @RequestMapping(value="/testCookie", method= RequestMethod.GET)
 @ResponseBody
 public String testCookie(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -450,7 +452,7 @@ public void doFilter(ServletRequest servletRequest, ServletResponse servletRespo
 
 
 >1. 跨域请求时，浏览器默认不会发送cookie，需要设置XMLHttpRequest的withCredentials属性为true
-2. 浏览器设置XMLHttpRequest的withCredentials属性为true，表明要向服务端发送凭证信息(这里是cookie)。那么服务端就需要在响应头中添加Access-Control-Allow-Credentials为true。否则浏览器上有两种情况：
+>2. 浏览器设置XMLHttpRequest的withCredentials属性为true，表明要向服务端发送凭证信息(这里是cookie)。那么服务端就需要在响应头中添加Access-Control-Allow-Credentials为true。否则浏览器上有两种情况：
    - 如果是简单请求，服务端结果吐出了，浏览器拿到了但就是不给吐出来，并报错。
    - 如果是预检请求，同样我们拿不到返回结果，并报错提示预检请求不通过，不会再发第二次请求。
 
@@ -485,6 +487,10 @@ cookie也遵循同源策略的，在设置cookie的时候可以发现除了键�
 - [HTTP-访问控制（CORS）](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
 - [Document - Document.cookie](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)
 - [聊一聊 cookie](https://segmentfault.com/a/1190000004556040)
+
+## Demo源码
+
+- [https://github.com/chang20159/daily-example/tree/master/CORS](https://github.com/chang20159/daily-example/tree/master/CORS)
 
 
    
