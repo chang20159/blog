@@ -1,5 +1,5 @@
 ---
-title: 关于CORS
+title: CORS跨域原理浅析
 categories:
 - 工作
 declare: true
@@ -405,12 +405,12 @@ Client:
 
 ```javascript
 var containerElem = document.getElementById('container')
-	new Request().send('http://localhost:8080/server/testCookie',{
-		withCredentials: true,
-		success: function(data){
-			containerElem.innerHTML = data
-		}
-	});
+new Request().send('http://localhost:8080/server/testCookie',{
+	withCredentials: true,
+	success: function(data){
+		containerElem.innerHTML = data
+	}
+});
 ```
 现在浏览器在请求头中加入了cookie信息
 <img src="../images/CORS/client_4_cookie_error.png"/>
@@ -473,13 +473,17 @@ cookie也遵循同源策略的，在设置cookie的时候可以发现除了键�
 | expires |cookie失效日期.如果没有定义,cookie会在对话结束时过期,即会话cookie|
 | secure|cookie只通过https协议传输|
 
-如果获取不到cookie，可以检查下cookie的domain.
+如果获取不到cookie，可以检查下cookie的domain和path.
 
 ### IE上跨域访问没有权限
 
 在跨域发送ajax请求时提示没有权限。 因为IE浏览器默认对跨域访问有限制。需要在浏览器设置中去除限制。 
 
 **方法：** 设置 > Internet选项 > 安全 > 自定义级别 > 在设置中找到其他 - 在【其他】中将【通过域访问数据源】启用
+
+## Demo源码
+
+- [https://github.com/chang20159/daily-example/tree/master/CORS](https://github.com/chang20159/daily-example/tree/master/CORS)
 
 ## 参考
 
@@ -488,9 +492,7 @@ cookie也遵循同源策略的，在设置cookie的时候可以发现除了键�
 - [Document - Document.cookie](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)
 - [聊一聊 cookie](https://segmentfault.com/a/1190000004556040)
 
-## Demo源码
 
-- [https://github.com/chang20159/daily-example/tree/master/CORS](https://github.com/chang20159/daily-example/tree/master/CORS)
 
 
    

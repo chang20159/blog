@@ -107,3 +107,11 @@ forbiddenRootScroll(flag){
 
 ## input placeholder与value重叠 
 妖孽的问题啊  等我复现了再研究是个什么鬼
+
+## button去掉点击时的蓝框
+
+```css
+button{
+	outline: 'none'
+}
+```
